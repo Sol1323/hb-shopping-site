@@ -79,7 +79,7 @@ def show_shopping_cart():
 
     return render_template("cart.html")
 
-app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+
 @app.route("/add_to_cart/<melon_id>")
 def add_to_cart(melon_id):
     """Add a melon to cart and redirect to shopping cart page.
@@ -100,12 +100,17 @@ def add_to_cart(melon_id):
     # - redirect the user to the cart page
     
     
-    if 'cart' not in session:
+    if 'cart' in session:
+        #if item is added to cart to existing item..
+        #
+
+        #if item is added to cart to nonexisting item..
+    else:
         session['cart'] = {}
         count = 0
         session['cart'] = {melon_id : count + 1}
         flash('Melon was successfully added to cart.')
-
+    print(session['cart'])
     return redirect('/cart')
         
 
